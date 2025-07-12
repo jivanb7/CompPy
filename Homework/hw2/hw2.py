@@ -38,18 +38,33 @@ artist_error = "No songs were found by "
 length_question = "Enter a number to view songs by length. (Positive: longest songs, Negative: shortest songs): "
 length_value_error = "Invalid vallue. Please enter a number."
 
+# CODE START
+
 user = input(user_choice_question)
+
 if (user == "1"):
     empty = set();
     for i in spotify:
         for art in spotify[i]["artists"]:
-            # print(art)
 
             if art not in empty:
                 empty.add(art)
     
     print(", ".join(sorted(empty)))
 
+elif (user == "2"):
+    user2 = (input("Enter the ranking you're interested in (between 1 and 10) : "))
+
+    if (not user2.isdigit()):
+        print("Invalid input. Please enter a number.")
+    
+    elif (int(user2) < 0 or int(user2) > 11):
+        print("Ranking out of range.")
+    
+    else:
+        print(f"{int(user2)}: {spotify[int(user2)]['title']} by {', '.join(spotify[int(user2)]['artists'])}")
+
 else:
-    print("error")
+    print("Error")
+    
 
